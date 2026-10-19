@@ -57,9 +57,10 @@ Prioridade se faltar tempo: **inscrição → Fase 0 → LINQ → Rodada 1 → p
 
 - [x] Instalar o .NET 10 SDK: https://dotnet.microsoft.com/download (ou `winget install Microsoft.DotNet.SDK.10`).
 - [x] Conferir: `dotnet --list-sdks` deve mostrar uma versão `10.x`.
-- [ ] No VS Code, instalar a extensão **C# Dev Kit**. (Se preferir uma IDE completa, o **Visual Studio 2022
-      Community** é gratuito e muito usado nas empresas .NET.)
-- [ ] Criar uma conta no GitHub (se ainda não tiver) e um repositório `estudos-dotnet`.
+- [x] No VS Code, instalar a extensão **C# Dev Kit**. (Se preferir uma IDE completa, o **Visual Studio 2022
+      Community** é gratuito e muito usado nas empresas .NET.) → escolhido: **Visual Studio Community** (2026-10-19).
+- [x] Criar uma conta no GitHub (se ainda não tiver) e um repositório `estudos-dotnet`.
+      → https://github.com/luis-costa-f/study-dot-net (2026-10-19).
 
 **Checkpoint:** `dotnet new console -n Ola` → `cd Ola` → `dotnet run` imprime "Hello, World!".
 
