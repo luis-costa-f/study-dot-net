@@ -1,0 +1,33 @@
+# Vagas e candidaturas (pessoal, não vai para o GitHub)
+vagas/
+
+# Build
+bin/
+obj/
+out/
+publish/
+
+# IDEs
+.vs/
+.vscode/*
+!.vscode/settings.json
+!.vscode/launch.json
+!.vscode/tasks.json
+!.vscode/extensions.json
+.idea/
+*.user
+*.suo
+
+# Testes e cobertura
+TestResults/
+coverage/
+*.coverage
+
+# Segredos e ambiente (connection strings ficam em `dotnet user-secrets`)
+.env
+appsettings.*.local.json
+*.pfx
+
+# Sistema
+Thumbs.db
+.DS_Store
