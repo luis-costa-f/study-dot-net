@@ -333,4 +333,4 @@ cobrem o que a vaga pede **além** do guia:
 | Data | Fase | O que aprendi | Dúvidas |
 |---|---|---|---|
 | 2026-10-19 | Planejamento | Vaga da Objective analisada; simulado de live coding e sprint da semana montados | |
-| 2026-10-19 | 0 e 1 | Fase 0 concluída (SDK, Visual Studio, GitHub, Hello World). Ex. 1 (tipos) ✅ Domina após 7 validações: divisão inteira, promoção de tipos, `double` × `decimal`, formatação de moeda por cultura, evitar `DateTime.Now` | |
+| 2026-10-19 | 0 e 1 | Fase 0 concluída (SDK, Visual Studio, GitHub, Hello World). Ex. 1 (tipos) ✅ Domina após 7 validações: divisão inteira, promoção de tipos, `double` × `decimal`, formatação de moeda por cultura, evitar `DateTime.Now`. Ex. 2 (condicionais) ✅ Domina após 5 validações: validar a entrada e não o resultado, `switch` expression com padrões relacionais, `Func<int, string>`, nome de método no infinitivo | |

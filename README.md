@@ -45,42 +45,65 @@ estudos-dotnet/
       (2026-10-19).
 - [x] **Fase 0 concluída:** .NET SDK 10, Visual Studio Community, repositório no GitHub e Hello World (2026-10-19).
 - [x] **Fase 1, Ex. 1 (tipos e variáveis): ✅ Domina** depois de 7 validações (2026-10-19).
+- [x] **Fase 1, Ex. 2 (condicionais): ✅ Domina** depois de 5 validações (2026-10-19).
 
 ---
 
 ## 📊 Progresso e tempo
 
-> Atualizado em **2026-10-19 às 11:53**. Os tempos são estimados pelos horários dos commits e dos arquivos e incluem
-> pausas. A partir de agora, anoto o tempo real de cada sessão no diário.
+> Atualizado em **2026-10-19 às 15:40**, depois do Ex. 2. ⚠️ Os tempos gastos até aqui são **tempo de relógio**
+> (horários dos arquivos e das validações) e incluem momentos em que eu estava lendo, trabalhando ou almoçando: são um
+> **teto**, não o tempo focado. O tempo de código anotado por mim nos arquivos foi de 20 min por exercício. A partir
+> do Ex. 3, anoto **início, fim e pausas** no cabeçalho de cada arquivo.
 
-### Tempo gasto até agora
+### Calendário: estou adiantado ou atrasado?
 
-| Data | O quê | Tempo |
-|---|---|---|
-| 2026-10-19 | Planejamento: vaga, guia, simulado, SOLID, organização do repositório | ~1h10 |
-| 2026-10-19 | Fase 0: SDK, Visual Studio, GitHub, Hello World | ~10 min |
-| 2026-10-19 | Fase 1, Ex. 1: 20 min de código + ~1h15 de correções (7 validações) | ~1h35 |
-| | **Total** | **~3h** |
+Meta: **4 meses**, de 2026-10-19 a **2027-02-19** (123 dias). A trilha soma ~**180h**, então o ritmo necessário é
+**~1h30 por dia** (≈10h30 por semana, contando fins de semana).
 
-### Tempo gasto × tempo previsto
+Comparo duas coisas a cada exercício:
+- **Horas investidas:** quanto tempo eu estudei × quanto o calendário pedia até hoje.
+- **Conteúdo entregue:** quanto da trilha eu concluí (em horas *previstas*) × quanto o calendário pedia. Esse é o
+  saldo que importa: é ele que diz se termino em 4 meses.
+
+| Depois de | Dia | Calendário pedia | Horas investidas (saldo) | Conteúdo entregue (saldo) |
+|---|---|---|---|---|
+| Fase 0 | 1 (19/10) | 1h30 | 10 min | 1h00 |
+| Ex. 1 | 1 (19/10) | 1h30 | 1h45 | 1h20 |
+| **Ex. 2** | **1 (19/10)** | **1h30** | **até 2h55 (teto)** | **1h40 (+10 min 🟢)** |
+
+*Conteúdo entregue = Fase 0 (1 dia ≈ 1h) + o tempo previsto de cada exercício concluído (20 min cada).
+O planejamento (~1h10) não entra: não é conteúdo da trilha.*
+
+**Leitura:** o saldo que vale é o de **conteúdo: em dia (+10 min)**. Ele não depende do tempo gasto, só do que foi
+concluído, então não muda com as pausas. As horas investidas e o fator de cada exercício estão superestimados até eu
+começar a anotar o tempo focado.
+
+### Exercícios: previsto × gasto
+
+| Exercício | Previsto | Gasto (relógio, teto) | Fator (teto) | Validações |
+|---|---|---|---|---|
+| Ex. 1 — Tipos | 20 min | ~1h35 (20 min de código + 1h15 de correções) | 4,8× | 7 |
+| Ex. 2 — Condicionais | 20 min | ~1h10 (35 min de código + 35 min de correções) | 3,5× | 5 |
+| **Total** | **40 min** | **~2h45** | **4,1×** | |
+
+- **A tendência é boa:** 7 → 5 validações (o número de validações é exato; o tempo, não). A meta continua sendo **no máximo 2×** por exercício.
+- **O que acontece se o fator não cair:** os Ex. 3–10 somam ~3h25 previstas. A 3,5× seriam ~12h; a 2×, ~6h50.
+  A diferença (~5h) é quase **meia semana** do calendário.
+- **Onde o tempo vai:** no Ex. 1, formatação e detalhes; no Ex. 2, lógica e nomes. O checklist "Antes de pedir
+  validação" do `EXERCICIOS.md` corta a maior parte das rodadas extras.
+
+### Visão geral
 
 | Escopo | Previsto | Gasto | Progresso |
 |---|---|---|---|
-| **Trilha completa** (Fases 0–8, sem o projeto final) | 21–24 semanas × 8h ≈ **170–190h** | ~3h | **~2%** |
+| **Trilha completa** (Fases 0–8) | ~180h (21–24 semanas a 8h, ou 4 meses a ~10h30) | ~2h55 | **~1%** · prazo: 2027-02-19 |
 | **Fase 0** | 1 dia | ~10 min (+ instalações) | ✅ 100% |
-| **Fase 1** | 3–4 semanas × 8h ≈ **24–32h** | ~1h35 | ~5% do tempo · 1 de 10 exercícios de fundamentos e 0 de 6 do domínio |
-| **Exercícios de fundamentos** (Ex. 1–10) | **~4h05** somando as estimativas | ~1h35 | 1 de 10 |
-| **Ex. 1** | 20 min | ~1h35 | ✅ **4,8× o previsto** |
+| **Fase 1** | 3–4 semanas ≈ 24–32h · até ~2026-11-07 no ritmo de 4 meses (28h ÷ 10h30 por semana) | ~2h45 | 2 de 10 exercícios de fundamentos · 0 de 6 do domínio |
+| **Sprint da entrevista** (Ex. 1–5 até terça) | 1h45 previstas | 2 de 5 feitos na segunda | 🟢 adiantado: faltam Ex. 3–5 (65 min previstos; ~2h10 a 2×) |
 
-### O que os números dizem
-
-- **O código em si saiu no tempo** (20 min). O que estourou foram as correções: 6 rodadas por detalhes de
-  formatação, um `DateTime.Now` e respostas de teoria incompletas. O checklist "Antes de pedir validação" do
-  `EXERCICIOS.md` existe para cortar isso.
-- **Meta para os próximos exercícios: no máximo 2× o tempo previsto.** Os Ex. 2–5 somam 85 min previstos: no ritmo
-  do Ex. 1 levariam ~6h45; com 2×, ~2h50, o que cabe no plano de terça.
-- **"4 meses" é otimista para 8h por semana.** As fases somam 21–24 semanas (~5 a 5,5 meses). Para fechar em
-  4 meses, seria preciso estudar ~10–11h por semana. Nenhum dos dois está errado; é uma escolha de ritmo.
+**Para manter os 4 meses:** ~1h30 por dia em média. Com 8h por semana, a trilha termina por volta de
+**março/abril de 2027** (21–24 semanas). Nenhum dos dois está errado; é uma escolha de ritmo.
 
 ---
 
@@ -89,7 +112,7 @@ estudos-dotnet/
 - [ ] **Seg 19:** currículo enviado, .NET SDK instalado, repositório no GitHub e `dotnet run` funcionando
       → SDK ✅ · GitHub ✅ · `dotnet run` ✅ · **currículo e inscrição ainda pendentes**
 - [ ] **Ter 20:** C# básico (tipos, `if`, laços, métodos, classes, `enum`)
-      → adiantado: Ex. 1 (tipos) ✅ já na segunda; faltam os Ex. 2–5
+      → adiantado: Ex. 1 (tipos) e Ex. 2 (condicionais) ✅ já na segunda; faltam os Ex. 3–5
 - [ ] **Qua 21:** `List`, **LINQ** e `record`, mais a **Rodada 1** do simulado (1ª tentativa)
 - [ ] **Qui 22:** primeira Web API em .NET 8 com GET e POST no Swagger
 - [ ] **Sex 23:** perguntas teóricas em voz alta, história "de Mendix para .NET" e Rodada 1 (2ª tentativa)

@@ -100,19 +100,35 @@ Dias desde o início: 79
 A severidade de um risco é calculada pelo **peso = impacto × probabilidade** (cada um de 1 a 5). As faixas abaixo
 são fictícias, criadas para este exercício: **1–4 → Baixo**, **5–12 → Médio**, **13–25 → Alto**.
 
-1. Escreva a classificação com **`if / else if / else`**.
-2. Escreva de novo com uma **`switch` expression** e *pattern matching* (`<= 4 => ...`).
-3. Imprima a classificação dos pares (1,3), (2,3), (3,4) e (5,5).
-4. Se impacto ou probabilidade estiver fora de 1–5, imprima `Valor inválido` em vez de classificar. Teste com (0,3).
+Tipos: `impacto`, `probabilidade` e `peso` são **`int`**; a classificação devolvida é **`string`**.
+
+1. Crie o método `static string ClassificarComIf(int peso)` usando **`if / else if / else`**.
+2. Crie o método `static string ClassificarComSwitch(int peso)` com a **mesma regra**, agora usando uma **`switch`
+   expression** com *relational patterns* (`<= 4 => ...`). As duas versões precisam dar sempre o mesmo resultado.
+3. No `Executar()`, classifique os pares (1,3), (2,3), (3,4) e (5,5): primeiro todos com a versão `if`, depois todos
+   com a versão `switch`.
+4. Se impacto **ou** probabilidade estiver fora de 1–5, imprima `Valor inválido` em vez de classificar. A validação
+   acontece **antes** de calcular o peso. Teste com (0,3).
 
 **Saída esperada:**
 ```
+Com if:
+1 x 3 = 3 → Baixo
+2 x 3 = 6 → Médio
+3 x 4 = 12 → Médio
+5 x 5 = 25 → Alto
+0 x 3 → Valor inválido
+Com switch:
 1 x 3 = 3 → Baixo
 2 x 3 = 6 → Médio
 3 x 4 = 12 → Médio
 5 x 5 = 25 → Alto
 0 x 3 → Valor inválido
 ```
+
+**Teoria** (comentário no fim do arquivo):
+- **T1.** Por que validar impacto e probabilidade **antes** de calcular o peso, e não validar só o peso?
+- **T2.** Quando você usaria `if / else` e quando usaria `switch` expression?
 
 ### Ex. 3 — Laços · `Ex03Lacos.cs` · ~25 min
 
@@ -283,7 +299,7 @@ Não tem saída esperada fixa. Nesse aqui eu vou avaliar organização, validaç
 ## Checklist
 
 - [x] Ex. 1 — Tipos e variáveis ✅ Domina (2026-10-19)
-- [ ] Ex. 2 — Condicionais
+- [x] Ex. 2 — Condicionais ✅ Domina (2026-10-19)
 - [ ] Ex. 3 — Laços
 - [ ] Ex. 4 — Métodos
 - [ ] Ex. 5 — Enums
@@ -353,14 +369,37 @@ Para ser aprovado, **todos** os itens precisam estar marcados. Eu marco cada um 
       falhando). Mas a linha antiga com as partes 1 e 2 foi **substituída**, em vez de mantida, e o arquivo deixou de
       dizer qual tipo usar no C# e no Mendix. Volte com a frase das partes 1 e 2 junto com a nova.
 
+### Ex. 2 — Condicionais (1ª: 🔴, 0/8 · 2ª: 🟡, 3/9 · 3ª: 🟡, 7/9 · 4ª: 🟡, 8/9 · **5ª validação, 2026-10-19: ✅ Domina, 9 de 9**)
+
+Todos os itens resolvidos: validação na entrada, classificadores corretos sozinhos e iguais entre si, nomes claros, saída exata e teoria com exemplo.
+
+**Código**
+- [x] **C1. Validar a entrada antes do peso.** Resolvido na 3ª: o peso só é calculado no `else`.
+- [x] **C2. As duas versões sempre iguais.** Resolvido na 2ª.
+- [x] **C3. Sem gambiarra na impressão.** Resolvido na 2ª.
+- [x] **C4. Nome do método de impressão.** Resolvido na 5ª (`ImprimirClassificacao`). "Classificacao" resolveu o "o que é impresso". Falta só o verbo:
+      `ImprimeClassificacao` está no presente ("ele imprime"); o padrão do arquivo e do .NET é o imperativo/infinitivo
+      (`Executar`, `Classificar...`, `Console.WriteLine`). Troque `Imprime` → `Imprimir` (declaração e 10 chamadas).
+- [x] **C5. Sem índices mágicos.** Resolvido na 3ª.
+- [x] **C6. "Alto" não pode ser o "resto".** Resolvido na 3ª: 13–25 explícito e fora de 1–25 tratado nos dois.
+
+**Saída**
+- [x] **S1.** Resolvido na 2ª.
+
+**Teoria**
+- [x] **T1.** Resolvido na 4ª: validar a entrada evita falsos positivos; (-1, -3) dá peso 3 → "Baixo" e esconde o
+      erro nos dados.
+- [x] **T2.** Resolvido na 3ª: `switch` expression para mapear um valor em outro, `if / else` para executar ações.
+      (Para enriquecer, não bloqueia: a validação da linha 33 junta duas variáveis diferentes com `||`, um caso
+      clássico de `if`.)
+
+*Sugestões que não bloqueiam:* declarar o peso já com valor, dentro do `else` (`int peso = impacto * probabilidade;`),
+em vez de `int peso;` lá em cima; colocar o comentário de teoria no fim do arquivo, e não dentro do `Executar`;
+chaves `{ }` também nos `if` de uma linha.
+
 ## Resultado da validação
 
 | Exercício | Data | Tempo | Nota | Observações |
 |---|---|---|---|---|
-| Ex. 1 — Tipos | 2026-10-19 | não anotado | 🟡 Funciona | Tipos todos certos. Ajustar: moeda com `ToString("C", pt-BR)` (hoje sem separador de milhar), variáveis locais em vez de campos `static`, `dataFim` → `dataReferencia`, e escrever o porquê de `7 / 2` e de `double` × `decimal`. |
-| Ex. 1 — Tipos (2ª) | 2026-10-19 | 20 min | 🟡 Funciona | Resolvidos: C2, C4, C6. Pendentes: C1 (`R$ R$`), C3 (`DateTime.Now` no lugar da data fixa), C5, S1, T1 (incompleta), T2, T3. |
-| Ex. 1 — Tipos (3ª) | 2026-10-19 | 20 min | 🟡 Funciona | Resolvidos: C1, T1, T2 (total 6/10). Pendentes: C3 (`hoje = DateTime.Now`), C5 (formatação), S1 (depende do C3), T3. |
-| Ex. 1 — Tipos (4ª) | 2026-10-19 | 20 min | 🟡 Funciona | Resolvidos: C3, S1 (total 8/10). Pendentes: C5 (espaços no fim das linhas 6, 15 e 26), T3 (sem resposta). |
-| Ex. 1 — Tipos (5ª) | 2026-10-19 | 20 min | 🟡 Funciona | Resolvido: C5 (total 9/10). Pendente: T3, parte 3 (o risco de usar `double` com dinheiro). |
-| Ex. 1 — Tipos (6ª) | 2026-10-19 | 20 min | 🟡 Funciona | T3: a parte 3 foi respondida, mas a frase das partes 1 e 2 (`decimal` / `Decimal` no Mendix) foi apagada. Total 9/10. |
 | **Ex. 1 — Tipos (7ª)** | 2026-10-19 | 20 min | **✅ Domina** | 10/10. Tipos corretos, moeda pela cultura, saída determinística, escopo e nomes certos, teoria completa (divisão inteira, promoção de tipos, ponto flutuante binário, risco do `double` com dinheiro). |
+| **Ex. 2 — Condicionais (5ª)** | 2026-10-19 | 20 min + correções | **✅ Domina** | 9/9. Validação da entrada antes do peso, faixas explícitas em `if` e `switch` (padrões relacionais `and`), classificadores corretos sozinhos, `Func<int, string>` para reaproveitar a impressão, teoria com exemplo de falso positivo. |
