@@ -35,7 +35,8 @@ Os dados que se repetem (projetos, enums) podem ficar num arquivo `Dados.cs`, cr
 ## Regras para a validação valer
 
 1. **Digite, não copie e cole.** Pode consultar a documentação; IA e soluções prontas, não.
-2. **Anote o tempo** de cada exercício no comentário do topo do arquivo: `// tempo: 25 min`.
+2. **Tempo:** não preciso anotar. O Claude estima pelos horários de criação e de alteração dos arquivos e das
+   validações (é tempo de relógio, com pausas incluídas).
 3. Se travar, escreva a dúvida num comentário `// DÚVIDA:` e siga em frente. Eu respondo na revisão.
 4. Commit a cada exercício: `feat: fase 1 - exercício 3 (laços)`.
 5. Ao terminar um bloco, diga **"valida os exercícios 1 a N"**.
@@ -63,7 +64,6 @@ No fim, eu monto um **mapa de habilidades** (o que está firme e o que precisa d
 - [ ] Respondi **todas as partes** de cada pergunta de teoria, com as minhas palavras, em linhas de até ~120
       caracteres.
 - [ ] Ao corrigir, **acrescentei** a resposta em vez de apagar o que já estava aprovado.
-- [ ] Anotei `// tempo: X min`.
 
 **Regra de aprovação:** um exercício só recebe ✅ e tem o checkbox marcado quando **todos** os itens da sua lista de
 correção estiverem resolvidos. Não existe "aprovado com ressalvas": 🟡 e 🔴 geram uma lista em
@@ -146,6 +146,10 @@ Com switch:
 Soma: 34 | Maior: 9 | Média: 6,8
 Meses para dobrar: 70
 ```
+
+**Teoria** (comentário no fim do arquivo):
+- **T1.** Por que `while` no item 3, e não `for`? E por que `foreach` no item 2, se um `for` com índice também
+  resolveria?
 
 ### Ex. 4 — Métodos · `Ex04Metodos.cs` · ~25 min
 
@@ -300,7 +304,7 @@ Não tem saída esperada fixa. Nesse aqui eu vou avaliar organização, validaç
 
 - [x] Ex. 1 — Tipos e variáveis ✅ Domina (2026-10-19)
 - [x] Ex. 2 — Condicionais ✅ Domina (2026-10-19)
-- [ ] Ex. 3 — Laços
+- [x] Ex. 3 — Laços ✅ Domina (2026-10-19)
 - [ ] Ex. 4 — Métodos
 - [ ] Ex. 5 — Enums
 - [ ] Ex. 6 — Classes
@@ -397,9 +401,32 @@ Todos os itens resolvidos: validação na entrada, classificadores corretos sozi
 em vez de `int peso;` lá em cima; colocar o comentário de teoria no fim do arquivo, e não dentro do `Executar`;
 chaves `{ }` também nos `if` de uma linha.
 
+### Ex. 3 — Laços (1ª: 🟡, 0/6 · 2ª: 🟡, 2/5 · 3ª: 🟡, 2/5 · 4ª: 🟡, 4/5 · **5ª validação, 2026-10-19: ✅ Domina, 5 de 5**)
+
+Todos os itens resolvidos: laço certo para cada caso, maior valor sem caso de borda, nomes que dizem o que cada
+método e cada variável são, conversão explícita e teoria com as próprias palavras.
+
+**Código**
+- ~~**C1. Tempo anotado.**~~ Retirado: o tempo passa a ser estimado pelo Claude (decisão de 2026-10-19).
+- [x] **C2. Valor inicial do maior.** Resolvido na 2ª: `horas[0]`.
+- [x] **C3. Nomes das variáveis do investimento.** Resolvido na 5ª: `saldoAtual` e `valorAlvo`. Sem mudança até a 4ª. `investimentoInicial` é
+      alterado dentro do laço (linha 47): no mês 1 já não é mais o inicial, e no fim vale ~2.006. O que essa
+      variável guarda mês a mês? E `investimentoLimite` é o quê para quem investe?
+- [x] **C4. Nomes dos métodos.** Resolvido na 4ª: `ImprimirCompetencias`, `ImprimirEstatisticasDeHoras`,
+      `ImprimirTempoParaDobrar`.
+- [x] **C5. Conversão explícita.** Resolvido na 2ª: `(decimal)totalHoras`.
+
+**Teoria**
+- [x] **T1.** Resolvido na 4ª: `while` porque o número de voltas é desconhecido e depende de uma condição de
+      parada; `foreach` porque a intenção é ler todos os itens, sem risco de erro de índice. Linhas até ~100.
+
+*Sugestões que não bloqueiam:* chaves `{ }` no `if` da linha 28; linha em branco antes do `Console.WriteLine` da
+linha 49; formatar a média com casas fixas (`:N1`); comentário de teoria no fim do arquivo, fora do `Executar`.
+
 ## Resultado da validação
 
 | Exercício | Data | Tempo | Nota | Observações |
 |---|---|---|---|---|
 | **Ex. 1 — Tipos (7ª)** | 2026-10-19 | 20 min | **✅ Domina** | 10/10. Tipos corretos, moeda pela cultura, saída determinística, escopo e nomes certos, teoria completa (divisão inteira, promoção de tipos, ponto flutuante binário, risco do `double` com dinheiro). |
 | **Ex. 2 — Condicionais (5ª)** | 2026-10-19 | 20 min + correções | **✅ Domina** | 9/9. Validação da entrada antes do peso, faixas explícitas em `if` e `switch` (padrões relacionais `and`), classificadores corretos sozinhos, `Func<int, string>` para reaproveitar a impressão, teoria com exemplo de falso positivo. |
+| **Ex. 3 — Laços** | 2026-10-19 | ~1h05 (relógio) | **✅ Domina** (5 validações) | `for` / `foreach` / `while` cada um no seu caso, maior valor começando em `horas[0]`, cast explícito `(decimal)`, nomes pelo propósito (`ImprimirEstatisticasDeHoras`, `saldoAtual`, `valorAlvo`). |
