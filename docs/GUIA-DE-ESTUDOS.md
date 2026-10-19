@@ -63,6 +63,7 @@ Prioridade se faltar tempo: **inscrição → Fase 0 → LINQ → Rodada 1 → p
       → https://github.com/luis-costa-f/study-dot-net (2026-10-19).
 
 **Checkpoint:** `dotnet new console -n Ola` → `cd Ola` → `dotnet run` imprime "Hello, World!".
+✅ **Fase 0 concluída em 2026-10-19** (`projetos/Ola`). Comandos do dia a dia em [`COMANDOS.md`](COMANDOS.md).
 
 ---
 
@@ -83,7 +84,11 @@ Prioridade se faltar tempo: **inscrição → Fase 0 → LINQ → Rodada 1 → p
 | Interfaces e herança | Generalização de entidade (ex.: herdar de `System.FileDocument`) |
 | `async` / `await` | (não tem equivalente direto — chamadas que esperam I/O) |
 
-**Exercícios** (console, sem banco):
+**Fundamentos com validação:** os 10 exercícios de
+[`projetos/fase-1-fundamentos/EXERCICIOS.md`](../projetos/fase-1-fundamentos/EXERCICIOS.md), com saída esperada e
+nota (✅ / 🟡 / 🔴) dada na revisão.
+
+**Exercícios do domínio** (console, sem banco, em `projetos/fase-1-riscos-console`):
 - [ ] Criar o enum `NaturezaRisco { Positivo, Negativo }` e o enum `StatusRisco` com os status que você conhece.
 - [ ] Criar as classes `Risco` e `Acao` (um risco tem uma lista de ações).
 - [ ] Escrever o método `bool ExigeAcaoEmAndamento(Risco r)` com a **regra do AM-925**
@@ -328,3 +333,4 @@ cobrem o que a vaga pede **além** do guia:
 | Data | Fase | O que aprendi | Dúvidas |
 |---|---|---|---|
 | 2026-10-19 | Planejamento | Vaga da Objective analisada; simulado de live coding e sprint da semana montados | |
+| 2026-10-19 | 0 e 1 | Fase 0 concluída (SDK, Visual Studio, GitHub, Hello World). Ex. 1 (tipos) ✅ Domina após 7 validações: divisão inteira, promoção de tipos, `double` × `decimal`, formatação de moeda por cultura, evitar `DateTime.Now` | |
