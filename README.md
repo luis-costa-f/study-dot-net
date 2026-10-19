@@ -16,13 +16,15 @@ estudos-dotnet/
 ├── README.md                    # este resumo: o que já fiz e o que falta
 ├── docs/
 │   ├── GUIA-DE-ESTUDOS.md       # plano completo, fases 0–8, sprint e diário de estudos
-│   └── SIMULADO-LIVE-CODING.md  # 3 rodadas de live coding, rubrica e histórico
+│   ├── SIMULADO-LIVE-CODING.md  # 3 rodadas de live coding, rubrica e histórico
+│   └── SOLID.md                 # teoria + exercícios dos 5 princípios
 ├── projetos/                    # mini projetos, um por fase (fase-0-ola, fase-1-...)
 └── simulados/                   # minhas soluções dos simulados, uma pasta por tentativa
 ```
 
 - [Guia de estudos](docs/GUIA-DE-ESTUDOS.md)
 - [Simulado de live coding](docs/SIMULADO-LIVE-CODING.md)
+- [SOLID: teoria e prática](docs/SOLID.md)
 - [Como organizar os projetos](projetos/README.md) · [Como organizar os simulados](simulados/README.md)
 
 ---
@@ -52,7 +54,8 @@ estudos-dotnet/
 
 - [ ] **Fase 0 — Máquina pronta** (1 dia): SDK, editor, git e GitHub
 - [ ] **Fase 1 — C# básico** (3–4 sem.): tipos, classes, coleções, LINQ, exceções e `async`
-- [ ] **Fase 2 — Organização e testes** (2 sem.): solution com vários projetos, NuGet, xUnit e SOLID
+- [ ] **Fase 2 — Organização e testes** (2 sem.): solution com vários projetos, NuGet e xUnit
+- [ ] **SOLID** (junto com a Fase 2): teoria dos 5 princípios, 5 exercícios e as perguntas de entrevista
 - [ ] **Fase 3 — Web API** (3 sem.): endpoints, DTOs, injeção de dependência, validação e Swagger
 - [ ] **Fase 4 — Banco de dados** (3–4 sem.): EF Core, migrations, relacionamentos e o problema N+1.
       Fazer com PostgreSQL **e** com SQL Server

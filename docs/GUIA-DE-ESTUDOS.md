@@ -48,15 +48,15 @@ Prioridade se faltar tempo: **inscrição → Fase 0 → LINQ → Rodada 1 → p
 
 | Ferramenta | Para quê | Status na sua máquina |
 |---|---|---|
-| **.NET 10 SDK** | compilar e rodar C# | ❌ só tem o *runtime* — instalar o **SDK** |
+| **.NET 10 SDK** | compilar e rodar C# | ✅ 10.0.402 (instalado em 2026-10-19; o runtime 8 também está instalado, para projetos `net8.0`) |
 | **Visual Studio 2022 Community** ou **VS Code + C# Dev Kit** | editor | VS Code instalado |
 | **git** | versionamento | ✅ 2.49 |
 | **Docker Desktop** | rodar o PostgreSQL | ✅ 29.6 |
 | **Node.js** | só se escolher React na fase 7 | ✅ 24 |
 | **PostgreSQL + pgAdmin** | banco de dados | ✅ você já usa |
 
-- [ ] Instalar o .NET 10 SDK: https://dotnet.microsoft.com/download (ou `winget install Microsoft.DotNet.SDK.10`).
-- [ ] Conferir: `dotnet --list-sdks` deve mostrar uma versão `10.x`.
+- [x] Instalar o .NET 10 SDK: https://dotnet.microsoft.com/download (ou `winget install Microsoft.DotNet.SDK.10`).
+- [x] Conferir: `dotnet --list-sdks` deve mostrar uma versão `10.x`.
 - [ ] No VS Code, instalar a extensão **C# Dev Kit**. (Se preferir uma IDE completa, o **Visual Studio 2022
       Community** é gratuito e muito usado nas empresas .NET.)
 - [ ] Criar uma conta no GitHub (se ainda não tiver) e um repositório `estudos-dotnet`.
@@ -108,8 +108,9 @@ por quê.
 | `namespace` | módulo (`AtlanteMasterMain.`) |
 | Pacotes **NuGet** | Marketplace |
 | Testes unitários com **xUnit** | (o Mendix não tem; você testava com F6 e clicando) |
-| Princípios **SOLID** (só o básico: responsabilidade única) | separar Controller/View, `SUB_` reaproveitáveis |
+| Princípios **SOLID** (teoria e prática em [`SOLID.md`](SOLID.md)) | separar Controller/View, `SUB_` reaproveitáveis |
 
+- [ ] Estudar a teoria do [`SOLID.md`](SOLID.md) e fazer os 5 exercícios em `projetos/fase-2-solid/`.
 - [ ] Criar uma solution com dois projetos: `Riscos.Dominio` (classes e regras) e `Riscos.Testes` (xUnit).
 - [ ] Escrever testes para a regra do AM-925 — um teste por linha da tabela de testes do
       `docs/AM-925-riscos-aceitos-ou-positivos.md`.
