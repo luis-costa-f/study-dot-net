@@ -305,7 +305,7 @@ Não tem saída esperada fixa. Nesse aqui eu vou avaliar organização, validaç
 - [x] Ex. 1 — Tipos e variáveis ✅ Domina (2026-10-19)
 - [x] Ex. 2 — Condicionais ✅ Domina (2026-10-19)
 - [x] Ex. 3 — Laços ✅ Domina (2026-10-19)
-- [ ] Ex. 4 — Métodos
+- [x] Ex. 4 — Métodos ✅ Domina (2026-10-20)
 - [ ] Ex. 5 — Enums
 - [ ] Ex. 6 — Classes
 - [ ] Ex. 7 — Coleções sem LINQ
@@ -423,6 +423,38 @@ método e cada variável são, conversão explícita e teoria com as próprias p
 *Sugestões que não bloqueiam:* chaves `{ }` no `if` da linha 28; linha em branco antes do `Console.WriteLine` da
 linha 49; formatar a média com casas fixas (`:N1`); comentário de teoria no fim do arquivo, fora do `Executar`.
 
+### Ex. 4 — Métodos (1ª: 🟡, 1/6 · 2ª: 🟡, 5/6 · **3ª validação, 2026-10-20: ✅ Domina, 6 de 6**)
+
+Todos os itens resolvidos: cada regra no método certo (faixa 1–5 dentro do `TentarLerNota`), exceção com `nameof` e
+mensagem pura, `out int` na chamada, nomes no infinitivo e arquivo limpo.
+
+**Código**
+- [x] **C1. A regra 1–5 fica dentro do `TentarLerNota`.** Resolvido na 2ª. O enunciado pede que o método "só aceite notas de 1 a 5",
+      mas ele só faz o `int.TryParse`. Hoje `TentarLerNota("9", out n)` devolve `true`, e quem chama precisa lembrar
+      de checar a faixa (linha 42). Se outro lugar usar o método (o Ex. 10 vai usar), a validação se perde. O método
+      deve devolver `false` para `"9"`, e o `ImprimirResultadoDasNotas` fica só com `if (TentarLerNota(...))`.
+- [x] **C2. Nome e formato do `retornaSeveridade`.** Resolvido na 2ª (`ClassificarPeso`). Método em C# é PascalCase, e sem espaço antes do `(`. Além disso,
+      "retorna" não diz nada: todo método com retorno "retorna". O nome deve dizer o que ele faz com o peso.
+- [x] **C3. Mensagem da exceção sem "Erro:" e com `nameof`.** Resolvido na 2ª. A exceção descreve o problema; quem decide como mostrar
+      é o `catch`. Tire o `"Erro: "` das duas mensagens e coloque-o no `Console.WriteLine` do `catch`. E troque
+      `"impacto"` / `"probabilidade"` por `nameof(impacto)` / `nameof(probabilidade)`: se alguém renomear o
+      parâmetro, o texto acompanha.
+- [x] **C4. `out` declarado na chamada.** Resolvido na 2ª. Em vez de `int nota;` numa linha e `out nota` na outra, o C# moderno
+      declara direto: `out int nota`. (Junto com o C1, a variável `resultado` deixa de ser necessária.)
+- [x] **C5. Limpeza e formatação.** Resolvido na 3ª. Remover o `using System.Runtime.InteropServices;` (não é usado; o VS colocou
+      sozinho) e o `// tempo: X min` (não anotamos mais tempo). Tirar o espaço em `impacto > 5 )` e as linhas em
+      branco antes da `}` (linhas 29, 50 e 61). `Ctrl+K, Ctrl+D` resolve a maior parte.
+      → *2ª validação:* `using`, comentário, espaço e as linhas 29 e 50 resolvidos. Falta a linha em branco antes da
+      `}` do `try` (agora linha 59, logo depois do `Console.WriteLine(resultado2);`) e a linha vazia extra no fim do
+      arquivo, depois da última `}`.
+
+**Saída**
+- [x] **S1.** Idêntica à esperada, caractere por caractere.
+
+*Sugestões que não bloqueiam:* deixar só a chamada `(0, 3)` dentro do `try` (o `(5, 4)` não deveria falhar, e o
+`resultado2` nunca é impresso); chaves `{ }` nos `if` do `throw`; como a entrada já foi validada, o `_` do `switch`
+nunca acontece: dá para lançar uma exceção ali (`_ => throw new UnreachableException()`) em vez de devolver um texto.
+
 ## Resultado da validação
 
 | Exercício | Data | Tempo | Nota | Observações |
@@ -430,3 +462,4 @@ linha 49; formatar a média com casas fixas (`:N1`); comentário de teoria no fi
 | **Ex. 1 — Tipos (7ª)** | 2026-10-19 | 20 min | **✅ Domina** | 10/10. Tipos corretos, moeda pela cultura, saída determinística, escopo e nomes certos, teoria completa (divisão inteira, promoção de tipos, ponto flutuante binário, risco do `double` com dinheiro). |
 | **Ex. 2 — Condicionais (5ª)** | 2026-10-19 | 20 min + correções | **✅ Domina** | 9/9. Validação da entrada antes do peso, faixas explícitas em `if` e `switch` (padrões relacionais `and`), classificadores corretos sozinhos, `Func<int, string>` para reaproveitar a impressão, teoria com exemplo de falso positivo. |
 | **Ex. 3 — Laços** | 2026-10-19 | ~1h05 (relógio) | **✅ Domina** (5 validações) | `for` / `foreach` / `while` cada um no seu caso, maior valor começando em `horas[0]`, cast explícito `(decimal)`, nomes pelo propósito (`ImprimirEstatisticasDeHoras`, `saldoAtual`, `valorAlvo`). |
+| **Ex. 4 — Métodos** | 2026-10-20 | ~1h05 (relógio) | **✅ Domina** (3 validações) | `throw new ArgumentOutOfRangeException(nameof(...))` tratado no `catch`, padrão `TryXxx` com `out int` e a regra de negócio dentro do método, `UnreachableException` no ramo impossível do `switch`. |
