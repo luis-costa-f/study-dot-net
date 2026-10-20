@@ -49,12 +49,13 @@ estudos-dotnet/
 - [x] **Fase 1, Ex. 3 (laços): ✅ Domina** depois de 5 validações (2026-10-19).
 - [x] **Fase 1, Ex. 4 (métodos): ✅ Domina** depois de 3 validações (2026-10-20).
 - [x] **Fase 1, Ex. 5 (enums): ✅ Domina** depois de 4 validações (2026-10-20).
+- [x] **Fase 1, Ex. 6 (classes): ✅ Domina** depois de 5 validações (2026-10-20).
 
 ---
 
 ## 📊 Progresso e tempo
 
-> Atualizado em **2026-10-20 às 16:11**, depois do Ex. 5. ⚠️ Os tempos gastos até aqui são **tempo de relógio**
+> Atualizado em **2026-10-20 às 17:06**, depois do Ex. 6. ⚠️ Os tempos gastos até aqui são **tempo de relógio**
 > (horários dos arquivos e das validações) e incluem momentos em que eu estava lendo, trabalhando ou almoçando: são um
 > **teto**, não o tempo focado. Eu não anoto o tempo: o Claude estima pelos horários de criação e de alteração dos arquivos e das validações.
 > Por isso, o número confiável é o saldo de **conteúdo entregue**.
@@ -76,13 +77,13 @@ Comparo duas coisas a cada exercício:
 | Ex. 2 | 1 (19/10) | 1h30 | até 2h55 (teto) | 1h40 (+10 min) |
 | Ex. 3 | 1 (19/10) | 1h30 | até 4h00 (teto) | 2h05 (+35 min) |
 | Ex. 4 | 2 (20/10) | 3h00 até o fim do dia | até 5h05 (teto) | 2h30 (−30 min) |
-| **Ex. 5** | **2 (20/10, em andamento)** | **3h00 até o fim do dia** | **até 6h00 (teto)** | **2h45 (−15 min 🟡)** |
+| Ex. 5 | 2 (20/10) | 3h00 até o fim do dia | até 6h00 (teto) | 2h45 (−15 min) |
+| **Ex. 6** | **2 (20/10)** | **3h00 até o fim do dia** | **até 6h50 (teto)** | **3h15 (+15 min 🟢)** |
 
-*Conteúdo entregue = Fase 0 (1 dia ≈ 1h) + o tempo previsto de cada exercício concluído (Ex. 1–2: 20 min; Ex. 3–4: 25 min; Ex. 5: 15 min).
+*Conteúdo entregue = Fase 0 (1 dia ≈ 1h) + o tempo previsto de cada exercício concluído (Ex. 1–2: 20 min; Ex. 3–4: 25 min; Ex. 5: 15 min; Ex. 6: 30 min).
 O planejamento (~1h10) não entra: não é conteúdo da trilha.*
 
-**Leitura:** o saldo que vale é o de **conteúdo: −15 min em relação ao fim do dia 2** (o dia ainda não acabou; começar o
-Ex. 6, com 30 min previstos, já zera e passa a +15 min). Praticamente em dia. Ele não depende do tempo gasto, só do que foi
+**Leitura:** o saldo que vale é o de **conteúdo: +15 min em relação ao fim do dia 2**. O dia 2 já está coberto. Ele não depende do tempo gasto, só do que foi
 concluído, então não muda com as pausas. As horas investidas e o fator de cada exercício estão superestimados até eu
 descontar as pausas (o Claude estima pelo relógio).
 
@@ -95,23 +96,25 @@ descontar as pausas (o Claude estima pelo relógio).
 | Ex. 3 — Laços | 25 min | ~1h05 (15:43 → 16:50) | 2,6× | 5 |
 | Ex. 4 — Métodos | 25 min | ~1h05 (14:06 → 15:12) | 2,6× | 3 |
 | Ex. 5 — Enums | 15 min | ~55 min (15:15 → 16:11) | 3,7× | 4 |
-| **Total** | **105 min** | **~5h50** | **3,3×** | |
+| Ex. 6 — Classes | 30 min | ~50 min (16:15 → 17:06) | 1,7× | 5 |
+| **Total** | **135 min** | **~6h40** | **3,0×** | |
 
-- **A tendência é boa:** 4,8× → 3,5× → 2,6× → 2,6× → 3,7× e 7 → 5 → 5 → 3 → 4 validações (o número de validações é exato; o tempo, não). O Ex. 5 subiu porque o previsto era curto (15 min) e o
-  `TryParse` escondia um caso de borda. A meta continua sendo **no máximo 2×** por exercício.
-- **O que acontece se o fator não cair:** os Ex. 6–10 somam ~2h20 previstas. A 3,3× seriam ~7h40; a 2×, ~4h40.
-  A diferença (~3h) é cerca de **dois dias** do calendário.
+- **A tendência é boa:** 4,8× → 3,5× → 2,6× → 2,6× → 3,7× → **1,7×** e 7 → 5 → 5 → 3 → 4 → 5 validações (o número de validações é exato; o tempo, não). O Ex. 5 subiu porque o previsto era curto (15 min) e o
+  `TryParse` escondia um caso de borda. O Ex. 6 foi o **primeiro abaixo da meta de 2×**. A meta continua sendo **no máximo 2×** por exercício.
+- **O que acontece se o fator não cair:** os Ex. 7–10 somam ~1h50 previstas. A 3,0× seriam ~5h30; a 2×, ~3h40.
+  A diferença (~1h50) é pouco mais de **um dia** do calendário.
 - **Onde o tempo vai:** no Ex. 1, formatação e detalhes; no Ex. 2, lógica e nomes; no Ex. 3, nomes (C3 e C4 levaram 4 das 5 rodadas); no Ex. 4, formatação (o C5 levou a última rodada sozinho); no Ex. 5, caso de borda do `TryParse` e depois
-  formatação (2 rodadas só para linhas em branco e comentários). O checklist "Antes de pedir
+  formatação (2 rodadas só para linhas em branco e comentários); no Ex. 6, o construtor da
+  `ArgumentOutOfRangeException` e depois 3 rodadas para o espaço em `"Ana") {`. O checklist "Antes de pedir
   validação" do `EXERCICIOS.md` corta a maior parte das rodadas extras.
 
 ### Visão geral
 
 | Escopo | Previsto | Gasto | Progresso |
 |---|---|---|---|
-| **Trilha completa** (Fases 0–8) | ~180h (21–24 semanas a 8h, ou 4 meses a ~10h30) | ~6h00 (teto) | **~1%** · prazo: 2027-02-19 |
+| **Trilha completa** (Fases 0–8) | ~180h (21–24 semanas a 8h, ou 4 meses a ~10h30) | ~6h50 (teto) | **~1%** · prazo: 2027-02-19 |
 | **Fase 0** | 1 dia | ~10 min (+ instalações) | ✅ 100% |
-| **Fase 1** | 3–4 semanas ≈ 24–32h · até ~2026-11-07 no ritmo de 4 meses (28h ÷ 10h30 por semana) | ~5h50 (teto) | 5 de 10 exercícios de fundamentos · 0 de 6 do domínio |
+| **Fase 1** | 3–4 semanas ≈ 24–32h · até ~2026-11-07 no ritmo de 4 meses (28h ÷ 10h30 por semana) | ~6h40 (teto) | 6 de 10 exercícios de fundamentos · 0 de 6 do domínio |
 | **Sprint da entrevista** (Ex. 1–5 até terça) | 1h45 previstas | 5 de 5 feitos (Ex. 4–5 na terça) | ✅ concluído no prazo |
 
 **Para manter os 4 meses:** ~1h30 por dia em média. Com 8h por semana, a trilha termina por volta de
@@ -123,8 +126,8 @@ descontar as pausas (o Claude estima pelo relógio).
 
 - [ ] **Seg 19:** currículo enviado, .NET SDK instalado, repositório no GitHub e `dotnet run` funcionando
       → SDK ✅ · GitHub ✅ · `dotnet run` ✅ · **currículo e inscrição ainda pendentes**
-- [ ] **Ter 20:** C# básico (tipos, `if`, laços, métodos, classes, `enum`)
-      → Ex. 1 (tipos), Ex. 2 (condicionais) e Ex. 3 (laços) ✅ na segunda; Ex. 4 (métodos) e Ex. 5 (enums) ✅ na terça; classes ficam no Ex. 6 (quarta)
+- [x] **Ter 20:** C# básico (tipos, `if`, laços, métodos, classes, `enum`)
+      → Ex. 1 (tipos), Ex. 2 (condicionais) e Ex. 3 (laços) ✅ na segunda; Ex. 4 (métodos), Ex. 5 (enums) e Ex. 6 (classes) ✅ na terça
 - [ ] **Qua 21:** `List`, **LINQ** e `record`, mais a **Rodada 1** do simulado (1ª tentativa)
 - [ ] **Qui 22:** primeira Web API em .NET 8 com GET e POST no Swagger
 - [ ] **Sex 23:** perguntas teóricas em voz alta, história "de Mendix para .NET" e Rodada 1 (2ª tentativa)

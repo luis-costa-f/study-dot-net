@@ -307,7 +307,7 @@ Não tem saída esperada fixa. Nesse aqui eu vou avaliar organização, validaç
 - [x] Ex. 3 — Laços ✅ Domina (2026-10-19)
 - [x] Ex. 4 — Métodos ✅ Domina (2026-10-20)
 - [x] Ex. 5 — Enums ✅ Domina (2026-10-20)
-- [ ] Ex. 6 — Classes
+- [x] Ex. 6 — Classes ✅ Domina (2026-10-20)
 - [ ] Ex. 7 — Coleções sem LINQ
 - [ ] Ex. 8 — LINQ ⭐
 - [ ] Ex. 9 — Records e nullable
@@ -494,6 +494,56 @@ certos. Mas testei o `TentarLerStatusProjetoEnum` com outras entradas, e um enum
 `Enum.IsDefined(status)` dispensa o `typeof`; passar os textos direto (`ImprimirX("Suspenso")`), sem as variáveis `testeSuspenso` e
 `testeCancelado`; no `out`, `status` em vez de `s` (o `s` do `Descrever` veio do enunciado e pode ficar).
 
+### Ex. 6 — Classes (1ª: 🟡, 1/6 · 2ª: 🟡, 4/6 · 3ª: 🟡, 5/6 · 4ª: 🟡, 5/6 · **5ª validação, 2026-10-20: ✅ Domina, 6 de 6**)
+
+Todos os itens resolvidos: enum no nível do arquivo, estado protegido (`private set` e setter que valida), exceções
+com o construtor certo e `catch` específico, inicializador de objeto formatado e saída exata.
+
+Na 1ª: a saída está idêntica à esperada, compila sem avisos, e a estrutura é boa: construtor com validação, `ToString()`
+sobrescrito, setter com campo `_orcamento` e lista com collection expression `[...]`. Os pontos abaixo são o que um
+sênior apontaria, e o C2 é a pergunta clássica de entrevista sobre encapsulamento.
+
+**Código**
+- [x] **C1. O enum voltou para dentro de uma classe.** Resolvido na 2ª (o `using static Dados;` que ficou no
+      `Ex06Classes.cs` é para o `Projetos()`, e esse uso está certo). Regressão do C3 do Ex. 5: no `Dados.cs` ele agora está dentro
+      de `public static class Dados`, e por isso o `using static Dados;` virou obrigatório no `Ex05Enums.cs` e no
+      `Projeto.cs`. O enum fica no nível do arquivo, e a classe `Dados` só com o método `Projetos()`. Depois disso, os
+      `using static Dados;` deixam de ser necessários para o enum.
+- [x] **C2. A validação do construtor pode ser contornada.** Resolvido na 2ª (`private set`). `Nome` e `Gerente` têm `set` público: depois de criado,
+      `projeto.Nome = "";` funciona e o projeto fica inválido. O construtor garante o estado só na criação; a
+      propriedade precisa garantir depois. Qual é a forma de deixar o `Nome` só para leitura de fora da classe?
+      (No Mendix, é como a regra de validação da entidade: vale em todo commit, não só no "New".)
+- [x] **C3. `nameof` no lugar certo.** Resolvido na 3ª. No construtor, o `nameof(nome)` está **dentro do texto** da mensagem: se alguém
+      renomear o parâmetro para `nomeProjeto`, a mensagem vira "O nomeProjeto do projeto é obrigatório.". O `nameof`
+      serve para o parâmetro `paramName` da exceção; o texto para o usuário fica escrito à mão. E no `Orcamento`,
+      `nameof(value)` diz "value" para quem recebe o erro: o que estava errado foi o `Orcamento`.
+      → *2ª validação:* o construtor ficou certo (texto escrito à mão). No `Orcamento`, o `nameof` saiu, mas sobrou
+      `new ArgumentOutOfRangeException("O orçamento não pode ser negativo.")`, e o construtor com **um** texto dessa
+      exceção recebe o `paramName`, não a mensagem. Testei: a mensagem vira `Specified argument was out of the range
+      of valid values. (Parameter 'O orçamento não pode ser negativo.')`. Use o construtor com dois parâmetros, como
+      no Ex. 4: primeiro `nameof(Orcamento)`, depois a mensagem.
+      → *3ª validação:* resolvido.
+- [x] **C4. `catch` específico.** Resolvido na 2ª. `catch (Exception ex)` pega qualquer erro, inclusive bugs que não têm nada a ver com o
+      teste. O construtor lança `ArgumentException`: capture essa (como você fez no Ex. 4 com a
+      `ArgumentOutOfRangeException`).
+- [x] **C5. Formatação.** Resolvido na 5ª. No `Dados.cs`: `"Ana"){    Status` tem espaços irregulares depois do `{` e nenhum antes; o
+      padrão é `new Projeto("Portal RH", "Ana") { Status = ..., Orcamento = ... }`. Os valores ficam com separador,
+      como no C4 do Ex. 1: `150_000m`. No `Ex06Classes.cs`: linha em branco entre o `using` e a classe.
+      → *2ª validação:* `150_000m`, a linha em branco e o espaço depois do `{` resolvidos. Falta o espaço **antes**
+      do `{`: `"Ana"){` → `"Ana") {` (nas 6 linhas).
+      → *3ª validação:* as 6 linhas ficaram `"Ana" ){`: o espaço foi para dentro do parêntese, e o `{` continua
+      colado. O certo é `"Ana") {`, sem espaço antes do `)` e com um espaço antes do `{`.
+      → *4ª validação:* o `{` foi corrigido, mas as 6 linhas estão `"Ana" ) {`. Falta apagar o espaço entre a
+      última aspa e o `)`.
+
+**Saída**
+- [x] **S1.** Idêntica à esperada, caractere por caractere.
+
+*Sugestões que não bloqueiam:* `Console.WriteLine(projeto)` já chama o `ToString()` sozinho; a variável `projeto1` nunca
+é usada (basta `new Projeto("", "Meu Gerente");`); validar também o gerente vazio; pasta `Models/` (no .NET as pastas
+são PascalCase, porque viram parte do namespace); chaves `{ }` nos `if` do `throw`. E o commit `384864e` ("adicionado
+exerc6") na verdade é o Ex. 5: no próximo, use uma mensagem que diga o que entrou.
+
 ## Resultado da validação
 
 | Exercício | Data | Tempo | Nota | Observações |
@@ -503,3 +553,4 @@ certos. Mas testei o `TentarLerStatusProjetoEnum` com outras entradas, e um enum
 | **Ex. 3 — Laços** | 2026-10-19 | ~1h05 (relógio) | **✅ Domina** (5 validações) | `for` / `foreach` / `while` cada um no seu caso, maior valor começando em `horas[0]`, cast explícito `(decimal)`, nomes pelo propósito (`ImprimirEstatisticasDeHoras`, `saldoAtual`, `valorAlvo`). |
 | **Ex. 4 — Métodos** | 2026-10-20 | ~1h05 (relógio) | **✅ Domina** (3 validações) | `throw new ArgumentOutOfRangeException(nameof(...))` tratado no `catch`, padrão `TryXxx` com `out int` e a regra de negócio dentro do método, `UnreachableException` no ramo impossível do `switch`. |
 | **Ex. 5 — Enums** | 2026-10-20 | ~55 min (relógio) | **✅ Domina** (4 validações) | `Enum.GetValues<T>()`, `TryParse` endurecido com `IsDefined` e comparação do nome (barra `"9"` e `"Ativo,Suspenso"`), enum aceita qualquer `int` → `_` lança `ArgumentOutOfRangeException`, enum no `Dados.cs`. |
+| **Ex. 6 — Classes** | 2026-10-20 | ~50 min (relógio) | **✅ Domina** (5 validações) | Construtor que exige o obrigatório, `private set` para não contornar a validação, setter com campo privado, `ArgumentOutOfRangeException(nameof(Orcamento), mensagem)` (o construtor de um texto recebe o `paramName`), `catch` específico, `ToString()` sobrescrito, collection expression. |
