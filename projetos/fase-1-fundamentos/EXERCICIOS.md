@@ -306,7 +306,7 @@ Não tem saída esperada fixa. Nesse aqui eu vou avaliar organização, validaç
 - [x] Ex. 2 — Condicionais ✅ Domina (2026-10-19)
 - [x] Ex. 3 — Laços ✅ Domina (2026-10-19)
 - [x] Ex. 4 — Métodos ✅ Domina (2026-10-20)
-- [ ] Ex. 5 — Enums
+- [x] Ex. 5 — Enums ✅ Domina (2026-10-20)
 - [ ] Ex. 6 — Classes
 - [ ] Ex. 7 — Coleções sem LINQ
 - [ ] Ex. 8 — LINQ ⭐
@@ -455,6 +455,45 @@ mensagem pura, `out int` na chamada, nomes no infinitivo e arquivo limpo.
 `resultado2` nunca é impresso); chaves `{ }` nos `if` do `throw`; como a entrada já foi validada, o `_` do `switch`
 nunca acontece: dá para lançar uma exceção ali (`_ => throw new UnreachableException()`) em vez de devolver um texto.
 
+### Ex. 5 — Enums (1ª: 🟡, 1/6 · 2ª: 🟡, 4/6 · 3ª: 🟡, 5/6 · **4ª validação, 2026-10-20: ✅ Domina, 6 de 6**)
+
+Todos os itens resolvidos: enum no nível do arquivo, leitura que só aceita nomes existentes (`IsDefined` + nome
+igual ao texto), `_` tratado como argumento inválido, nomes pelo propósito, arquivos limpos e saída exata.
+
+Na 1ª: a saída estava idêntica à esperada, e `Enum.GetValues<T>()`, a `switch` expression e o `Enum.TryParse` com `out` estavam
+certos. Mas testei o `TentarLerStatusProjetoEnum` com outras entradas, e um enum não é tão "fechado" quanto parece.
+
+**Código**
+- [x] **C1. `TryParse` aceita status que não existem.** Resolvido na 2ª (`Enum.IsDefined` + nome igual ao texto). Testei: `"9"` → `true` com valor `9`; `"Ativo,Suspenso"` →
+      `true` com valor `3` (`Concluido`!), porque o `TryParse` aceita números e combina nomes com vírgula. Com `"9"`,
+      o programa **quebra** no `Descrever`. Mesma lição do C1 do Ex. 4: a regra "só status válidos" fica dentro do
+      `TentarLer...`. Pesquise `Enum.IsDefined`.
+- [x] **C2. O `_` do `switch` de enum é alcançável.** Resolvido na 2ª. No Ex. 4 o `UnreachableException` estava certo, porque o peso já
+      tinha sido validado. Aqui não: um enum é um `int` por baixo, e `(StatusProjeto)9` compila e roda. O caso `_`
+      deve lançar a exceção de argumento inválido que você já usou no Ex. 4 (com `nameof`).
+- [x] **C3. Enum fora da classe.** Resolvido na 2ª (`Dados.cs`). Declarado dentro da `static class`, o nome completo vira
+      `Ex05Enums.StatusProjeto`, e o Ex. 6 vai precisar dele no `Dados.cs`. Tipos como enum ficam no nível do arquivo
+      (fora da classe), como uma Enumeration do Mendix fica no módulo, e não dentro de um microflow.
+- [x] **C4. Nomes.** Resolvido na 2ª (`TentarLerStatusProjeto`, `ImprimirStatusValidado`, `status`). `TentarLerStatusProjetoEnum`: o tipo não vai no nome ("Enum" já está na assinatura).
+      `ImprimirTesteDeConversaoDeStringParaStatusProjeto`: descreve a técnica e é longo; como no Ex. 3, o nome responde
+      "o que aparece na tela?". `enumProjeto`: a variável do `foreach` é um **status**, não um "enum de projeto".
+- [x] **C5. Formatação.** Resolvido na 4ª. Os comentários `// 0`, `// 1`... estão desalinhados e repetem o que o C# já faz sozinho:
+      tire-os (ou, se quiser deixar o número explícito, use `Planejado = 0` no próprio enum). E o cast fica sem
+      espaço, como no Ex. 3: `(int)status`.
+      → *2ª validação:* o cast foi corrigido. Os comentários `// 0`... foram junto com o enum para o `Dados.cs` e
+      continuam lá, desalinhados. O `Dados.cs` também começa com uma linha em branco.
+      → *3ª validação:* comentários trocados por `Planejado = 0`... ✅. A linha em branco na linha 1 do `Dados.cs`
+      continua.
+
+**Saída**
+- [x] **S1.** Idêntica à esperada, caractere por caractere. Resolvido na 3ª.
+      → *2ª validação:* as linhas 48–49 (`Console.WriteLine((StatusProjeto)9)` e `(StatusProjeto)3`) imprimem `9` e
+      `Concluido` a mais. Testar é ótimo, mas o teste sai do código entregue (ou vira chamada com saída prevista).
+
+*Sugestões que não bloqueiam:* chaves `{ }` no `if` do `TentarLerStatusProjeto`; a versão genérica
+`Enum.IsDefined(status)` dispensa o `typeof`; passar os textos direto (`ImprimirX("Suspenso")`), sem as variáveis `testeSuspenso` e
+`testeCancelado`; no `out`, `status` em vez de `s` (o `s` do `Descrever` veio do enunciado e pode ficar).
+
 ## Resultado da validação
 
 | Exercício | Data | Tempo | Nota | Observações |
@@ -463,3 +502,4 @@ nunca acontece: dá para lançar uma exceção ali (`_ => throw new UnreachableE
 | **Ex. 2 — Condicionais (5ª)** | 2026-10-19 | 20 min + correções | **✅ Domina** | 9/9. Validação da entrada antes do peso, faixas explícitas em `if` e `switch` (padrões relacionais `and`), classificadores corretos sozinhos, `Func<int, string>` para reaproveitar a impressão, teoria com exemplo de falso positivo. |
 | **Ex. 3 — Laços** | 2026-10-19 | ~1h05 (relógio) | **✅ Domina** (5 validações) | `for` / `foreach` / `while` cada um no seu caso, maior valor começando em `horas[0]`, cast explícito `(decimal)`, nomes pelo propósito (`ImprimirEstatisticasDeHoras`, `saldoAtual`, `valorAlvo`). |
 | **Ex. 4 — Métodos** | 2026-10-20 | ~1h05 (relógio) | **✅ Domina** (3 validações) | `throw new ArgumentOutOfRangeException(nameof(...))` tratado no `catch`, padrão `TryXxx` com `out int` e a regra de negócio dentro do método, `UnreachableException` no ramo impossível do `switch`. |
+| **Ex. 5 — Enums** | 2026-10-20 | ~55 min (relógio) | **✅ Domina** (4 validações) | `Enum.GetValues<T>()`, `TryParse` endurecido com `IsDefined` e comparação do nome (barra `"9"` e `"Ativo,Suspenso"`), enum aceita qualquer `int` → `_` lança `ArgumentOutOfRangeException`, enum no `Dados.cs`. |
