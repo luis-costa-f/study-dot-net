@@ -308,7 +308,7 @@ Não tem saída esperada fixa. Nesse aqui eu vou avaliar organização, validaç
 - [x] Ex. 4 — Métodos ✅ Domina (2026-10-20)
 - [x] Ex. 5 — Enums ✅ Domina (2026-10-20)
 - [x] Ex. 6 — Classes ✅ Domina (2026-10-20)
-- [ ] Ex. 7 — Coleções sem LINQ
+- [x] Ex. 7 — Coleções sem LINQ ✅ Domina (2026-10-26)
 - [ ] Ex. 8 — LINQ ⭐
 - [ ] Ex. 9 — Records e nullable
 - [ ] Ex. 10 — Desafio de fechamento
@@ -544,6 +544,56 @@ sênior apontaria, e o C2 é a pergunta clássica de entrevista sobre encapsulam
 são PascalCase, porque viram parte do namespace); chaves `{ }` nos `if` do `throw`. E o commit `384864e` ("adicionado
 exerc6") na verdade é o Ex. 5: no próximo, use uma mensagem que diga o que entrou.
 
+### Ex. 7 — Coleções sem LINQ (1ª: 🟡, 1/6 · 2ª: 🟡, 5/7 · **3ª validação, 2026-10-26: ✅ Domina, 7 de 7**)
+
+Todos os itens resolvidos: moeda pela cultura, desconstrução no `foreach`, escopo e formatação, comentário do empate
+claro e teoria com as suas palavras (inclusive o `Remove` + `Add` reaproveitando o espaço livre).
+
+A saída está idêntica à esperada e o raciocínio está certo: `TryGetValue` com `out` para contar (uma busca só no
+dicionário), `0m` no acumulador e o gerente com mais projetos calculado **no mesmo laço** da contagem, sem uma segunda
+volta. Os pontos abaixo são o que um sênior apontaria; o C1 é uma regressão do Ex. 1.
+
+**Código**
+- [x] **C1. Moeda pela cultura (regressão do C1 do Ex. 1).** Resolvido na 2ª. `R$ {orcamentoAtivo:N2}` tem o `R$ ` escrito à mão e o
+      `N2` usa a cultura **da máquina**. Testei com `en-US`: sai `R$ 545,000.00`. Use
+      `orcamentoAtivo.ToString("C", new CultureInfo("pt-BR"))` (com `using System.Globalization;`) e tire o `R$ ` do texto.
+- [x] **C2. Nome da variável do laço.** Resolvido na 2ª (desconstrução `(status, quantidade)`). `kpv` parece um erro de digitação de `kvp` (*key-value pair*), e abreviação
+      não diz o que tem dentro. Use um nome como `par` ou, melhor, desconstrua:
+      `foreach (var (status, quantidade) in contagemPorStatus)`.
+- [x] **C3. Menor escopo.** Resolvido na 2ª. `contagemPorStatus` é declarado na linha 6, antes do comentário da seção 1. Declare dentro
+      da seção, perto do uso, como você já fez com `orcamentoAtivo` e `contagemPorGerente`.
+- [x] **C4. Formatação.** Resolvido na 2ª (a linha em branco depois do comentário agora está nas três seções, o que também é consistente). Linha 5: dois espaços em `=  Dados`. Linha 51: `){` colado. O resto do arquivo usa a chave
+      na linha de baixo, e você também pode colocá-la ali. Linha 26: o separador tem um `-` a menos que os outros.
+      Linha 40: linha em branco entre o comentário e o código, que as seções 1 e 2 não têm.
+- [x] **C5. O comentário do empate e o padrão do arquivo.** Resolvido na 3ª. *(novo na 2ª)* A linha 49 está como
+      `/*Aqui vai assegura o primeiro que chegou a maior marca não tenho tratativa para empate*/`. A frase não fecha
+      ("vai assegura") e, para uma linha só, o C# usa `//` com espaço depois. Algo como
+      `// Empate: fica o primeiro gerente que chegou ao máximo, porque o ">" não troca.` Na linha 43 sobrou
+      `new Dictionary<string, int>()`, enquanto a linha 13 usa `[]`. Escolha um jeito e use nos dois. Ponha também uma
+      linha em branco entre o `}` do método (linha 58) e o bloco de comentário da teoria.
+
+**Saída**
+- [x] **S1.** Idêntica à esperada, caractere por caractere (na máquina `pt-BR`; só fica garantida em qualquer
+      máquina depois do C1).
+
+**Teoria** (responder com as suas palavras, num comentário no fim do `Ex07Colecoes.cs`)
+- [x] **T1. Ordem do `Dictionary`.** Resolvido na 3ª. A saída sai `Ativo, Concluido, Suspenso`. Por que nessa ordem? A documentação do
+      `Dictionary` **garante** essa ordem? Se a saída precisasse seguir a ordem do enum (`Planejado, Ativo, Suspenso,
+      Concluido`), como você faria? Dica: você já usou `Enum.GetValues<T>()` no Ex. 5.
+      → *2ª validação:* o conteúdo está certo nas três partes (ordem de inserção, a documentação diz que a ordem é
+      indefinida, laço no `Enum.GetValues<StatusProjeto>()` buscando no dicionário). Mas a regra da teoria é **com as
+      suas palavras**, e esse texto não soa como o seu: tem moldura de `====`, "afirma categoricamente", "um
+      desenvolvedor Sênior nunca baseia...". Compare com o comentário da linha 49, que é a sua voz. Na entrevista você
+      vai ter que falar isso sem apoio. Reescreva em 3 ou 4 frases curtas, do seu jeito, e responda também: **depois de
+      um `Remove` seguido de um `Add`, onde a chave nova pode aparecer, e por quê?** (Pense no espaço que o `Remove`
+      deixou livre.) No exemplo de código, o `TryGetValue(...) ? valor : 0` é o `GetValueOrDefault` que você já usou
+      na linha 48.
+
+*Sugestões que não bloqueiam:* o "conta mais um" fica numa linha com
+`contagem[chave] = contagem.GetValueOrDefault(chave) + 1;`; `new Dictionary<StatusProjeto, int>()` pode ser só `new()`
+ou `[]` (como no `Dados.cs`); se Bruno também tivesse 3 projetos, o seu `>` mostraria Ana (quem chegou primeiro).
+Saiba explicar isso, porque o empate é uma pergunta comum no live coding.
+
 ## Resultado da validação
 
 | Exercício | Data | Tempo | Nota | Observações |
@@ -554,3 +604,4 @@ exerc6") na verdade é o Ex. 5: no próximo, use uma mensagem que diga o que ent
 | **Ex. 4 — Métodos** | 2026-10-20 | ~1h05 (relógio) | **✅ Domina** (3 validações) | `throw new ArgumentOutOfRangeException(nameof(...))` tratado no `catch`, padrão `TryXxx` com `out int` e a regra de negócio dentro do método, `UnreachableException` no ramo impossível do `switch`. |
 | **Ex. 5 — Enums** | 2026-10-20 | ~55 min (relógio) | **✅ Domina** (4 validações) | `Enum.GetValues<T>()`, `TryParse` endurecido com `IsDefined` e comparação do nome (barra `"9"` e `"Ativo,Suspenso"`), enum aceita qualquer `int` → `_` lança `ArgumentOutOfRangeException`, enum no `Dados.cs`. |
 | **Ex. 6 — Classes** | 2026-10-20 | ~50 min (relógio) | **✅ Domina** (5 validações) | Construtor que exige o obrigatório, `private set` para não contornar a validação, setter com campo privado, `ArgumentOutOfRangeException(nameof(Orcamento), mensagem)` (o construtor de um texto recebe o `paramName`), `catch` específico, `ToString()` sobrescrito, collection expression. |
+| **Ex. 7 — Coleções sem LINQ** | 2026-10-26 | ~1h10 (relógio) | **✅ Domina** (3 validações) | Contagem com `TryGetValue` / `GetValueOrDefault`, máximo no mesmo laço (empate explicado), desconstrução `(status, quantidade)`, moeda com `CultureInfo` explícita, ordem do `Dictionary` não garantida → iterar no `Enum.GetValues<T>()`. |

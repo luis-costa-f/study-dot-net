@@ -1,5 +1,5 @@
 ﻿// Program.cs — troque o número para rodar outro exercício
-var exercicio = 6;
+var exercicio = 7;
 
 switch (exercicio)
 {
@@ -9,5 +9,6 @@ switch (exercicio)
     case 4: Ex04Metodos.Executar(); break;
     case 5: Ex05Enums.Executar(); break;
     case 6: Ex06Classes.Executar(); break;
+    case 7: Ex07Colecoes.Executar(); break;
     default: Console.WriteLine("Exercício não encontrado"); break;
 }
