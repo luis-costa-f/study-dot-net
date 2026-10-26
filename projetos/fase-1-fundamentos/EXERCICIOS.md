@@ -309,7 +309,7 @@ Não tem saída esperada fixa. Nesse aqui eu vou avaliar organização, validaç
 - [x] Ex. 5 — Enums ✅ Domina (2026-10-20)
 - [x] Ex. 6 — Classes ✅ Domina (2026-10-20)
 - [x] Ex. 7 — Coleções sem LINQ ✅ Domina (2026-10-26)
-- [ ] Ex. 8 — LINQ ⭐
+- [x] Ex. 8 — LINQ ⭐ ✅ Domina (2026-10-26)
 - [ ] Ex. 9 — Records e nullable
 - [ ] Ex. 10 — Desafio de fechamento
 
@@ -594,6 +594,66 @@ volta. Os pontos abaixo são o que um sênior apontaria; o C1 é uma regressão 
 ou `[]` (como no `Dados.cs`); se Bruno também tivesse 3 projetos, o seu `>` mostraria Ana (quem chegou primeiro).
 Saiba explicar isso, porque o empate é uma pergunta comum no live coding.
 
+### Ex. 8 — LINQ (1ª: 🟡, 1/7 · 2ª: 🟡, 5/8 · **3ª validação, 2026-10-26: ✅ Domina, 8 de 8**)
+
+Todos os itens resolvidos: sem `using` sobrando, maiúsculas pela cultura, nomes que dizem o que a variável guarda
+(inclusive depois do `Select` anônimo), acabamento, reflexão com as suas palavras e execução adiada explicada por
+referências ao código, e não por números de linha.
+
+A saída está idêntica à esperada, caractere por caractere, e o build não tem avisos. O LINQ está bem usado:
+`Select` no fim para levar só o nome ao `string.Join`, `GroupBy` + `OrderByDescending` + `First`, `All` com
+`IsNullOrWhiteSpace` (e não só `!= null`), `?.` + `??` no `FirstOrDefault`, e a moeda com `culturaBR` explícita (a
+lição do Ex. 7 ficou). O comentário do Mendix no item 7 (*Find* vazio → `empty`; no C#, `null`) é exatamente o tipo
+de ponte que vale contar na entrevista.
+
+**Código**
+- [x] **C1. `using` sobrando.** Resolvido na 2ª. `using System.Text.RegularExpressions;` (linha 2) não é usado. No Visual Studio ele
+      aparece apagado; `Ctrl+.` → *Remover usings desnecessários*.
+- [x] **C2. Maiúsculas pela cultura.** Resolvido na 2ª (`ToUpper(culturaBR)`). `ToUpper()` sem parâmetro usa a cultura **da máquina**, o mesmo problema do
+      `N2` no Ex. 7. O caso clássico é o turco: lá, `"i".ToUpper()` vira `"İ"` (com ponto). Use `ToUpperInvariant()`
+      ou `ToUpper(culturaBR)`, que você já tem na linha 9.
+- [x] **C3. Nomes.** Resolvido na 3ª (`gerenteComMaisProjetos`, com `Nome` e `Quantidade`). `concluidosMaisculos` → `concluidosMaiusculos` (falta o *u*). `gerenteComMaisProjeto` está no
+      singular (no Ex. 7 era `gerenteComMaisProjetos`) e, na verdade, guarda um **grupo** (`IGrouping<string, Projeto>`),
+      não um gerente: o gerente é o `.Key`. Algo como `grupoDoGerenteComMaisProjetos` ou `maiorGrupo` diz o que tem dentro.
+      → *2ª validação:* `concluidosMaiusculos` resolvido, e o `Select(g => new { Gerente, Quantidade })` ficou ótimo.
+      Mas, por causa dele, a variável **deixou de ser um grupo**: agora é um objeto com `Gerente` e `Quantidade`.
+      O nome `grupoGerenteTop` descreve o que ela era antes. Agora o nome do Ex. 7, `gerenteComMaisProjetos`,
+      encaixa certinho (e evita o inglês "Top" no meio do português).
+- [x] **C4. Comentários.** Resolvido na 2ª. Linha 29: falta fechar o parêntese em `(GroupBy + OrderByDescending + First`. As seções 1 e
+      7 têm uma linha em branco depois do comentário e as seções 2 a 6 não; escolha um padrão (como no C4 do Ex. 7).
+- [x] **C5. Acabamento.** Resolvido na 3ª. *(novo na 2ª)* Na seção 6 falta a linha em branco antes do `Console.WriteLine` (linha 52),
+      que todas as outras seções têm. Na reflexão, `açõesdentro` (linha 77) está sem espaço. No comentário do empate,
+      "se os dois têm 3 projetos" afirma algo que os dados não dizem (Bruno tem 2): escreva como hipótese, "se Bruno
+      também tivesse 3 projetos".
+
+**Saída**
+- [x] **S1.** Idêntica à esperada, caractere por caractere.
+
+**Teoria** (responder com as suas palavras, num comentário no fim do `Ex08Linq.cs`)
+- [x] **T1. Ex. 7 × Ex. 8.** Resolvido na 2ª: com as suas palavras, com números e com um caso concreto para o `foreach`. O enunciado pede para comparar o tamanho e dizer quando você preferiria cada um. As linhas
+      64–65 são a sua voz, mas não respondem. O bloco de reflexão logo abaixo responde, mas tem o mesmo problema do T1
+      do Ex. 7: não soa como você ("absurdamente", "em 95% do tempo", "padrão da indústria", moldura de `====`), e o
+      "95%" é um número inventado. Apague os dois e escreva 3 ou 4 frases suas, com **números de verdade**: quantas
+      linhas tem a contagem por status e a busca do gerente no Ex. 7, e quantas no Ex. 8? E um caso concreto em que você
+      ficaria com o `foreach`. Dica: no Ex. 7 você achou o gerente numa volta só; o que o `GroupBy` + `OrderByDescending`
+      fazem a mais?
+- [x] **T2. Execução adiada (*deferred execution*).** Resolvido na 3ª. A pergunta de LINQ que mais cai em entrevista. Na linha 14,
+      `ativosPorOrcamento` **ainda não tem os nomes**. Em que linha a consulta realmente roda? O que aconteceria se,
+      entre a linha 17 e a 19, você fizesse `projetos.Add(...)` com mais um projeto `Ativo`? Ele apareceria na saída?
+      E o que muda se a linha 17 terminar com `.ToList()`? Pode testar, mas explique com as suas palavras.
+      → *2ª validação:* o conceito está certo nas três partes (a consulta só roda no `string.Join`, o projeto novo
+      aparece, o `.ToList()` congela o resultado). O problema são as **linhas citadas**, que não batem com o arquivo
+      de agora (ele encolheu 2 linhas depois do C1 e do C4): "adicionarmos um novo projeto na linha 18" é **depois**
+      do `string.Join` da linha 17, e aí o projeto **não** apareceria; e a linha 12 é o `var ativosPorOrcamento =
+      projetos`, não o fim da consulta (linha 15). Na entrevista, esse tipo de imprecisão faz o entrevistador duvidar
+      de que você entendeu. Troque os números por referências ao código ("entre a declaração e o `string.Join`",
+      "no fim da consulta, depois do `Select`"), que não mudam quando o arquivo muda.
+
+*Sugestões que não bloqueiam:* no item 3, o `Count()` é chamado duas vezes (na ordenação e na impressão). Aqui não
+pesa, porque o grupo já sabe o próprio tamanho, mas o hábito de guardar o resultado num `Select(g => new { Gerente =
+g.Key, Quantidade = g.Count() })` deixa a impressão mais clara. O empate continua igual ao Ex. 7: o `OrderByDescending`
+é **estável** (mantém a ordem original entre iguais), então Ana ganharia de Bruno por aparecer primeiro.
+
 ## Resultado da validação
 
 | Exercício | Data | Tempo | Nota | Observações |
@@ -605,3 +665,4 @@ Saiba explicar isso, porque o empate é uma pergunta comum no live coding.
 | **Ex. 5 — Enums** | 2026-10-20 | ~55 min (relógio) | **✅ Domina** (4 validações) | `Enum.GetValues<T>()`, `TryParse` endurecido com `IsDefined` e comparação do nome (barra `"9"` e `"Ativo,Suspenso"`), enum aceita qualquer `int` → `_` lança `ArgumentOutOfRangeException`, enum no `Dados.cs`. |
 | **Ex. 6 — Classes** | 2026-10-20 | ~50 min (relógio) | **✅ Domina** (5 validações) | Construtor que exige o obrigatório, `private set` para não contornar a validação, setter com campo privado, `ArgumentOutOfRangeException(nameof(Orcamento), mensagem)` (o construtor de um texto recebe o `paramName`), `catch` específico, `ToString()` sobrescrito, collection expression. |
 | **Ex. 7 — Coleções sem LINQ** | 2026-10-26 | ~1h10 (relógio) | **✅ Domina** (3 validações) | Contagem com `TryGetValue` / `GetValueOrDefault`, máximo no mesmo laço (empate explicado), desconstrução `(status, quantidade)`, moeda com `CultureInfo` explícita, ordem do `Dictionary` não garantida → iterar no `Enum.GetValues<T>()`. |
+| **Ex. 8 — LINQ** ⭐ | 2026-10-26 | até ~3h50 (relógio, com almoço) | **✅ Domina** (3 validações) | `Where` + `OrderByDescending` + `Select`, `GroupBy` com `Select` anônimo, `First` com ordenação estável (empate), `Any` / `All`, `Average`, `FirstOrDefault` + `?.` + `??`, `ToUpper` com cultura, execução adiada × `.ToList()`. |

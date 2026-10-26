@@ -51,12 +51,13 @@ estudos-dotnet/
 - [x] **Fase 1, Ex. 5 (enums): ✅ Domina** depois de 4 validações (2026-10-20).
 - [x] **Fase 1, Ex. 6 (classes): ✅ Domina** depois de 5 validações (2026-10-20).
 - [x] **Fase 1, Ex. 7 (coleções sem LINQ): ✅ Domina** depois de 3 validações (2026-10-26).
+- [x] **Fase 1, Ex. 8 (LINQ ⭐): ✅ Domina** depois de 3 validações (2026-10-26).
 
 ---
 
 ## 📊 Progresso e tempo
 
-> Atualizado em **2026-10-26 às 11:18**, depois do Ex. 7. ⚠️ Os tempos gastos até aqui são **tempo de relógio**
+> Atualizado em **2026-10-26 às 15:25**, depois do Ex. 8. ⚠️ Os tempos gastos até aqui são **tempo de relógio**
 > (horários dos arquivos e das validações) e incluem momentos em que eu estava lendo, trabalhando ou almoçando: são um
 > **teto**, não o tempo focado. Eu não anoto o tempo: o Claude estima pelos horários de criação e de alteração dos arquivos e das validações.
 > Por isso, o número confiável é o saldo de **conteúdo entregue**.
@@ -80,13 +81,14 @@ Comparo duas coisas a cada exercício:
 | Ex. 4 | 2 (20/10) | 3h00 até o fim do dia | até 5h05 (teto) | 2h30 (−30 min) |
 | Ex. 5 | 2 (20/10) | 3h00 até o fim do dia | até 6h00 (teto) | 2h45 (−15 min) |
 | Ex. 6 | 2 (20/10) | 3h00 até o fim do dia | até 6h50 (teto) | 3h15 (+15 min) |
-| **Ex. 7** | **8 (26/10)** | **12h00 até o fim do dia** | **até 8h00 (teto)** | **3h40 (−8h20 🔴)** |
+| Ex. 7 | 8 (26/10) | 12h00 até o fim do dia | até 8h00 (teto) | 3h40 (−8h20) |
+| **Ex. 8** | **8 (26/10)** | **12h00 até o fim do dia** | **até 11h50 (teto, com almoço)** | **4h15 (−7h45 🔴)** |
 
-*Conteúdo entregue = Fase 0 (1 dia ≈ 1h) + o tempo previsto de cada exercício concluído (Ex. 1–2: 20 min; Ex. 3–4: 25 min; Ex. 5: 15 min; Ex. 6: 30 min; Ex. 7: 25 min).
+*Conteúdo entregue = Fase 0 (1 dia ≈ 1h) + o tempo previsto de cada exercício concluído (Ex. 1–2: 20 min; Ex. 3–4: 25 min; Ex. 5: 15 min; Ex. 6: 30 min; Ex. 7: 25 min; Ex. 8: 35 min).
 O planejamento (~1h10) não entra: não é conteúdo da trilha.*
 
-**Leitura:** o saldo que vale é o de **conteúdo: −8h20 em relação ao fim do dia 8**. Até o dia 2 estava +15 min; a
-diferença veio dos dias 3 a 7 (21 a 25/10) sem exercício concluído. São ~5½ dias do ritmo de 1h30. Ele não depende do tempo gasto, só do que foi
+**Leitura:** o saldo que vale é o de **conteúdo: −7h45 em relação ao fim do dia 8**. Até o dia 2 estava +15 min; a
+diferença veio dos dias 3 a 7 (21 a 25/10) sem exercício concluído. São ~5 dias do ritmo de 1h30. Ele não depende do tempo gasto, só do que foi
 concluído, então não muda com as pausas. As horas investidas e o fator de cada exercício estão superestimados até eu
 descontar as pausas (o Claude estima pelo relógio).
 
@@ -101,25 +103,26 @@ descontar as pausas (o Claude estima pelo relógio).
 | Ex. 5 — Enums | 15 min | ~55 min (15:15 → 16:11) | 3,7× | 4 |
 | Ex. 6 — Classes | 30 min | ~50 min (16:15 → 17:06) | 1,7× | 5 |
 | Ex. 7 — Coleções sem LINQ | 25 min | ~1h10 (10:07 → 11:18) | 2,8× | 3 |
-| **Total** | **160 min** | **~7h50** | **2,9×** | |
+| Ex. 8 — LINQ ⭐ | 35 min | até ~3h50 (11:32 → 15:20, **com almoço**) | até 6,6× | 3 |
+| **Total** | **195 min** | **até ~11h40** | **até 3,6×** | |
 
-- **A tendência é boa:** 4,8× → 3,5× → 2,6× → 2,6× → 3,7× → 1,7× → 2,8× e 7 → 5 → 5 → 3 → 4 → 5 → **3** validações (o número de validações é exato; o tempo, não). O Ex. 5 subiu porque o previsto era curto (15 min) e o
+- **A tendência é boa:** 4,8× → 3,5× → 2,6× → 2,6× → 3,7× → 1,7× → 2,8× → (Ex. 8 sem dado confiável: o relógio inclui o almoço) e 7 → 5 → 5 → 3 → 4 → 5 → 3 → **3** validações (o número de validações é exato; o tempo, não). O Ex. 5 subiu porque o previsto era curto (15 min) e o
   `TryParse` escondia um caso de borda. O Ex. 6 foi o **primeiro abaixo da meta de 2×**. A meta continua sendo **no máximo 2×** por exercício.
-- **O que acontece se o fator não cair:** os Ex. 8–10 somam ~1h25 previstas. A 2,9× seriam ~4h05; a 2×, ~2h50.
-  A diferença (~1h15) é menos de **um dia** do calendário.
+- **O que falta na Fase 1 de fundamentos:** Ex. 9 (20 min) e Ex. 10 (30 min cronometrados), ~50 min previstos.
 - **Onde o tempo vai:** no Ex. 1, formatação e detalhes; no Ex. 2, lógica e nomes; no Ex. 3, nomes (C3 e C4 levaram 4 das 5 rodadas); no Ex. 4, formatação (o C5 levou a última rodada sozinho); no Ex. 5, caso de borda do `TryParse` e depois
   formatação (2 rodadas só para linhas em branco e comentários); no Ex. 6, o construtor da
   `ArgumentOutOfRangeException` e depois 3 rodadas para o espaço em `"Ana") {`; no Ex. 7, a regressão da moeda
-  (C1 do Ex. 1) e a teoria reescrita com as próprias palavras. O checklist "Antes de pedir
+  (C1 do Ex. 1) e a teoria reescrita com as próprias palavras; no Ex. 8, a teoria
+  com as próprias palavras de novo e números de linha que deixaram de bater depois das correções. O checklist "Antes de pedir
   validação" do `EXERCICIOS.md` corta a maior parte das rodadas extras.
 
 ### Visão geral
 
 | Escopo | Previsto | Gasto | Progresso |
 |---|---|---|---|
-| **Trilha completa** (Fases 0–8) | ~180h (21–24 semanas a 8h, ou 4 meses a ~10h30) | ~8h00 (teto) | **~2%** · prazo: 2027-02-19 |
+| **Trilha completa** (Fases 0–8) | ~180h (21–24 semanas a 8h, ou 4 meses a ~10h30) | ~11h50 (teto) | **~2%** · prazo: 2027-02-19 |
 | **Fase 0** | 1 dia | ~10 min (+ instalações) | ✅ 100% |
-| **Fase 1** | 3–4 semanas ≈ 24–32h · até ~2026-11-07 no ritmo de 4 meses (28h ÷ 10h30 por semana) | ~7h50 (teto) | 7 de 10 exercícios de fundamentos · 0 de 6 do domínio |
+| **Fase 1** | 3–4 semanas ≈ 24–32h · até ~2026-11-07 no ritmo de 4 meses (28h ÷ 10h30 por semana) | ~11h40 (teto) | 8 de 10 exercícios de fundamentos · 0 de 6 do domínio |
 | **Sprint da entrevista** (Ex. 1–5 até terça) | 1h45 previstas | 5 de 5 feitos (Ex. 4–5 na terça) | ✅ concluído no prazo |
 
 **Para manter os 4 meses:** ~1h30 por dia em média. Com 8h por semana, a trilha termina por volta de
